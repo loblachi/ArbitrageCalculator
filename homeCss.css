@@ -5,11 +5,9 @@
     font-size: 16px;
     box-sizing: border-box;
     /* Variables */ 
-
 }
 body{
     background-color: rgba(0, 70, 70, 0.255);
-    height: 100%;
 }
 .heading-bg{
     background-color: black ;
@@ -62,7 +60,7 @@ body{
 .spacer-div{
     height: 7rem;
     width: 100%;
-    background-color: blue;
+    background-color: silver;
 
 }
 /*************** Section one  starts **********/
@@ -135,4 +133,9 @@ body{
 .results-display h4{
     color: white;
     font-size: 1.5rem;
+}
+.black-div{
+    height: 20rem;
+    width: 100%;
+    background-color: black;
 }
