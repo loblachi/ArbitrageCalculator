@@ -1,6 +1,3 @@
-
- 
-
 document.querySelector(".submit-button").addEventListener( "click" , ()=> {
     let Home = document.querySelector("#odd1").value; 
     let Draw = document.querySelector("#odd2").value; 
