@@ -1,0 +1,138 @@
+*{
+    margin:0; 
+    padding: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 16px;
+    box-sizing: border-box;
+
+    /* Variables */ 
+
+}
+body{
+    background-color: rgba(0, 70, 70, 0.255);
+}
+.heading-bg{
+    background-color: black ;
+    position: fixed;
+    width: 100%;
+}
+.heading-flex{
+    width: 90%;
+    margin: 0 auto;
+}
+.heading-content{
+    display:flex; 
+    justify-content: left;
+    align-items: center;
+    padding: 1rem 0rem;
+}
+.logo-div{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0rem 4rem 0rem 0rem;
+}
+.logo-div img{
+    width: 5rem;
+}
+.nav-links{
+    list-style: none;
+    display: flex;
+    flex-direction: row;
+    gap: 1.5rem;
+}
+.links-li a{
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    text-decoration: none;
+    color: black;
+    text-transform: uppercase;
+    font-size: 1.25rem;
+    letter-spacing: .1rem;
+    word-spacing: .4rem;
+    padding: .75rem 1.75rem;
+    border-bottom: 1px solid black;
+    color: rgb(129, 129, 129);
+    transition: .3s all;
+}
+.links-li a:hover{
+    border-bottom: 1px solid white;
+    color: white;
+    box-shadow: rgba(255, 255, 255, 0.274) 0px -50px 36px -28px inset;
+}
+.spacer-div{
+    height: 7rem;
+    width: 100%;
+    background-color: blue;
+
+}
+/*************** Section one  starts **********/
+.section-one-bg{
+    background-color: rgb(0, 0, 0);
+}
+.section-one-container{
+    padding: 10rem 0rem;
+    width: 90%;
+    max-width: 1120px;
+    margin: 0 auto;
+}
+.section-one-flex{
+    display: flex; 
+    flex-direction: column;
+    align-items: center;
+}
+.form-one{
+    width: 100%;
+}
+.odds-div{
+    width: 100%;
+    display: flex;
+    flex-direction: row; 
+    justify-content: center;
+    gap: 1rem;
+}
+.odds{
+    display: flex;
+    gap: .5rem;
+    flex-direction: column;
+    align-items: center;
+}
+.odds input{
+    padding: .5rem 1.25rem;
+    width: 6rem;
+}
+.odds label{
+    color: white;
+}
+.submit-div-button{
+    margin: 2rem 0rem;
+    text-align: center;
+}
+.submit-button{
+    padding: .75rem 2rem;
+    cursor: pointer;
+    border-radius: .25rem;
+    border: none;
+    background-color: #92D696;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    transition: .35s all;
+}
+.submit-button:hover{
+    background-color: #70a874;
+}
+.results-display{
+    margin-top: 2rem;
+    padding: 1.5rem 2.5rem;
+    border: 1px solid white;
+    display: flex; flex-direction: column;
+    justify-content: center;
+    gap: .5rem;
+    align-items: center;
+}
+.results-display h3{
+    color: red;
+    font-family:Verdana, Geneva, Tahoma, sans-serif;
+}
+.results-display h4{
+    color: white;
+    font-size: 1.5rem;
+}
