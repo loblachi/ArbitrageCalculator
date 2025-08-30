@@ -53,9 +53,9 @@ function displayInputAmounts(perc){
 
     <div class="radio-div">
         <label><input type="radio" name="strategy" value="equal" checked> Equal profit</label>
-        <label><input type="radio" name="strategy" value="home"> Home profit</label>
-        <label><input type="radio" name="strategy" value="away"> Away profit</label>
-        <label><input type="radio" name="strategy" value="draw"> Draw profit</label>  
+        <label><input type="radio" disabled name="strategy" value="home"> Home profit</label>
+        <label><input type="radio" disabled name="strategy" value="away"> Away profit</label>
+        <label><input type="radio" disabled name="strategy" value="draw"> Draw profit</label>  
     </div>
 
     <button id="calculateBtn" class="calculateBtn">Calculate Bets</button>
@@ -73,8 +73,13 @@ function displayInputAmounts(perc){
 }
 
 function verifyTotalAmount(){
-    const selected = document.querySelector('input[name="strategy"]:checked').value;
     const amt = document.querySelector(".amount-input").value ;
+    if (!amt || isNaN(amt) || amt.trim() === "") {
+    console.log("Invalid input, exiting...");
+    alert("Please enter a valid number")
+    return; // 🚪 exit the function here
+   }
+    const selected = document.querySelector('input[name="strategy"]:checked').value;
     console.log(selected + " " + amt); 
 
     calculateProfit(amt , selected)
@@ -121,18 +126,21 @@ function calculateEqualProfit(totalAmount , pHome , pDraw , pAway , sum){
   const profit = totalAmount * (1 / sum - 1);
   let arrObj = [
     {
+        name:"Home",
         odds: 1/pHome,
         stake: stakeHome.toFixed(2),
         return: (stakeHome * (1/pHome)).toFixed(2),
         profit: ((stakeHome * (1/pHome)) - totalAmount).toFixed(2)
     },
     {
+        name: "Away",
         odds: 1/pAway,
         stake: stakeAway.toFixed(2),
         return: (stakeAway * (1/pAway)).toFixed(2),
         profit: ((stakeAway * (1/pAway)) - totalAmount).toFixed(2)
     },
     {
+        name: "Draw",
         odds: 1/pDraw,
         stake: stakeDraw.toFixed(2),
         return: (stakeDraw * (1/pDraw)).toFixed(2),
@@ -145,7 +153,7 @@ function calculateEqualProfit(totalAmount , pHome , pDraw , pAway , sum){
     <th>Odds</th>
     <th>Initial Stake</th>
     <th>Total Return</th>
-    <th>Actual Profit</th>
+    <th>Actual Profit(R)</th>
   </tr>
   ${iterateOver(arrObj)}
   </table>
@@ -156,31 +164,21 @@ function calculateEqualProfit(totalAmount , pHome , pDraw , pAway , sum){
 
 
 function iterateOver(arrObj){
-    let combinedHtml = ''; 
+    let combinedHtml = `
+    <div class="heading-display">
+      <h3>Equal Profit</h3>
+    </div>
+    `; 
     arrObj.forEach( (obj) => {
        let singleHtml = `
         <tr>
             <td>${obj.odds}</td>
             <td>${obj.stake}</td>
             <td>${obj.return}</td>
-            <td>${obj.profit}</td>
+            <td class="profit-class">${obj.profit}</td>
         </tr>
         `; 
          combinedHtml += singleHtml; 
   })
   return combinedHtml; 
 }
-
-
-
-
-
-
-
-/* 
-| Outcome (Odds)   |  Stake (R) |   Return (R) |  Profit (R) |
-| ---------------- | ---------: | -----------: | ----------: |
-| Tottenham (2.20) | **500.00** | **1,100.00** | **+207.78** |
-| Other (4.30)     |     207.49 |       892.22 |        0.00 |
-| Other (4.83)     |     184.72 |       892.22 |        0.00 |
-*/ 

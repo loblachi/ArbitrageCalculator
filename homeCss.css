@@ -68,7 +68,7 @@ body{
     background-color: rgb(0, 0, 0);
 }
 .section-one-container{
-    padding: 10rem 0rem;
+    padding: 3rem 0rem 7rem 0rem;
     width: 90%;
     max-width: 1120px;
     margin: 0 auto;
@@ -114,7 +114,7 @@ body{
     margin-right: .5rem;
     border-radius: .25rem;
     border: none;
-    background-color: #92D696;
+    background-color: #29db58;
     box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
     transition: .35s all;
 }
@@ -131,12 +131,14 @@ body{
     width: 1.5rem;
 }
 .submit-button:hover{
-    background-color: #70a874;
+    background-color: #05830e;
+    color: white;
 }
 .results-display{
-    margin-top: 2rem;
+    margin: 2rem 0rem 3rem 0rem; 
     padding: 1.5rem 2.5rem;
-    border: 1px solid white;
+    border-radius: .5rem;
+    box-shadow: rgba(147, 147, 148, 0.529) 0px 8px 24px;
     display: flex; flex-direction: column;
     justify-content: center;
     gap: .5rem;
@@ -156,9 +158,9 @@ body{
     background-color: yellow;
 }
 .section-two-flex{
-    border: 1px solid white;
-    padding: 5rem 10rem; 
+    padding: 2rem 1rem; 
     margin-top: 2rem;
+    width: 100%;
 
     display: flex;
     flex-direction: column;
@@ -170,30 +172,66 @@ body{
     display: flex;
     flex-direction: row;
     gap: 2rem;
+    padding: 1rem 0rem;
 }
 .radio-div label{
-    margin: 1.5rem 0rem ;
+    display: block;
+    text-align: center;
+    margin: 1.5rem 0rem;
+    font-size: .8rem;
+    cursor: pointer;
 }
 .radio-div label input{
     color: white;
     transform: scale(1.5);
-    margin-right: .5rem;
+    margin-right: .3rem;
 }
 .amount-input{
     padding: .6rem 1rem .6rem .5rem;
 }
 #calculateBtn{
+    min-width: 10rem;
     padding: .75rem 1.5rem;
     border-radius: .2rem;
     background-color: rgb(111, 198, 227);
+    transition: .3s all;
+}
+#calculateBtn:hover{
+    background-color: rgb(49, 110, 214);
+    color: white;
+    cursor: pointer;
 }
 .table-info{
     border: 1px solid white;
     width: 100%;
-    padding: .6rem 1.5rem;
     color: white;
-    margin-top: 3rem;
 }
 .table-info tr th , .table-info tr td{
-    padding: .5rem 1.25rem;
+    padding: .75rem 1rem;
+    border: 1px solid white;
+}
+.table-info tr th {
+    background-color: rgb(94, 94, 94);
+}
+.profit-class{
+    background-color: rgb(54, 166, 54);
+}
+
+#result{
+    max-width: 30rem;
+    margin-top: 5rem;
+}
+.heading-display{
+ 
+}
+.heading-display h3{
+    color: white;
+    text-align: center;
+    margin-bottom: .5rem;
+}
+
+@media (max-width: 600px){
+.section-one-container{
+    width: 96%;
+}
 }
