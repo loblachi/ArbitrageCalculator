@@ -172,7 +172,7 @@ function iterateOver(arrObj){
     arrObj.forEach( (obj) => {
        let singleHtml = `
         <tr>
-            <td>${obj.odds}</td>
+            <td>${(obj.odds).toFixed(2)}</td>
             <td>${obj.stake}</td>
             <td>${obj.return}</td>
             <td class="profit-class">${obj.profit}</td>
