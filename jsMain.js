@@ -53,9 +53,9 @@ function displayInputAmounts(perc){
 
     <div class="radio-div">
         <label><input type="radio" name="strategy" value="equal" checked> Equal profit</label>
-        <label><input type="radio" disabled name="strategy" value="home"> Home profit</label>
-        <label><input type="radio" disabled name="strategy" value="away"> Away profit</label>
-        <label><input type="radio" disabled name="strategy" value="draw"> Draw profit</label>  
+        <label><input type="radio"  name="strategy" value="home"> Home profit</label>
+        <label><input type="radio"  name="strategy" value="away"> Away profit</label>
+        <label><input type="radio"  name="strategy" value="draw"> Draw profit</label>  
     </div>
 
     <button id="calculateBtn" class="calculateBtn">Calculate Bets</button>
@@ -85,66 +85,93 @@ function verifyTotalAmount(){
     calculateProfit(amt , selected)
 }
 function calculateProfit(amt , radioSelected){
-    let homeOdd  = document.querySelector("#odd1").value; 
-    let drawOdd  = document.querySelector("#odd2").value; 
-    let awayOdd  = document.querySelector("#odd3").value;
-
-    const pHome = 1 / homeOdd;
-    const pDraw = 1 / drawOdd;
-    const pAway = 1 / awayOdd;
-
-    const sum = pHome + pDraw + pAway;
+    let pHome  = parseFloat(document.querySelector("#odd1").value); 
+    let pDraw  = parseFloat(document.querySelector("#odd2").value); 
+    let pAway  = parseFloat(document.querySelector("#odd3").value);
 
     switch(radioSelected){
         case "equal" :
-             calculateEqualProfit(amt , pHome , pDraw , pAway, sum); 
+            pHome = 1 / parseFloat(pHome);
+            pDraw = 1 / parseFloat(pDraw);
+            pAway = 1 / parseFloat(pAway);
+            const sum = pHome + pDraw + pAway;
+             CalculateTargetProfit(amt , pHome , pDraw , pAway, "equal" , sum); 
         break;
 
         case "home" :
-
+            CalculateTargetProfit(amt , pHome , pDraw , pAway, "home");
         break;
 
         case "away" : 
-
+            CalculateTargetProfit(amt , pHome , pDraw , pAway, "away");
         break; 
 
         case "draw" :
-
+            CalculateTargetProfit(amt , pHome , pDraw , pAway, "draw");
         break; 
 
         default:
             console.log("Unknown Strategy");
     }
 }
-function calculateEqualProfit(totalAmount , pHome , pDraw , pAway , sum){
- // Calculate stakes for equal profit
-  const stakeHome = totalAmount * (pHome / sum);
-  const stakeDraw = totalAmount * (pDraw / sum);
-  const stakeAway = totalAmount * (pAway / sum);
+function CalculateTargetProfit(totalAmount , pHome , pDraw , pAway , target , sum = 0){
+    let profit = 0; 
+    let stakeHome = 0; 
+    let stakeDraw = 0; 
+    let stakeAway = 0; 
 
-  // Calculate profit (same for all outcomes)
-  const profit = totalAmount * (1 / sum - 1);
+    console.log("this is the sum for now : " + sum)
+ // Calculate stakes for equal profit
+   if(target === "equal"){
+     stakeHome = totalAmount * (pHome / sum);
+     stakeDraw = totalAmount * (pDraw / sum);
+     stakeAway = totalAmount * (pAway / sum);
+
+    // Calculate profit (same for all outcomes)
+     profit = totalAmount * (1 / sum - 1);
+
+   }
+else if (target === "home") {
+        stakeDraw = totalAmount / pDraw;
+        stakeAway = totalAmount / pAway;
+        stakeHome = totalAmount - (stakeDraw + stakeAway);
+        profit = stakeHome * pHome - totalAmount;
+    } else if (target === "draw") {
+        stakeHome = totalAmount / pHome;
+        stakeAway = totalAmount / pAway;
+        stakeDraw = totalAmount - (stakeHome + stakeAway);
+        profit = stakeDraw * pDraw - totalAmount;
+    } else if (target === "away") {
+        stakeHome = totalAmount / pHome;
+        stakeDraw = totalAmount / pDraw;
+        stakeAway = totalAmount - (stakeHome + stakeDraw);
+        profit = stakeAway * pAway - totalAmount;
+    }
+ // yooooo testing this above
+     function easeExpression(oddExpression){
+       return target === "equal" ? 1/oddExpression : oddExpression ; 
+     }
   let arrObj = [
     {
         name:"Home",
-        odds: 1/pHome,
+        odds: easeExpression(pHome) ,
         stake: stakeHome.toFixed(2),
-        return: (stakeHome * (1/pHome)).toFixed(2),
-        profit: ((stakeHome * (1/pHome)) - totalAmount).toFixed(2)
+        return: (stakeHome * easeExpression(pHome)).toFixed(2),
+        profit: ((stakeHome * easeExpression(pHome)) - totalAmount).toFixed(2)
     },
     {
         name: "Away",
-        odds: 1/pAway,
+        odds: easeExpression(pAway),
         stake: stakeAway.toFixed(2),
-        return: (stakeAway * (1/pAway)).toFixed(2),
-        profit: ((stakeAway * (1/pAway)) - totalAmount).toFixed(2)
+        return: (stakeAway * easeExpression(pAway)).toFixed(2),
+        profit: ((stakeAway * easeExpression(pAway)) - totalAmount).toFixed(2)
     },
     {
         name: "Draw",
-        odds: 1/pDraw,
+        odds: easeExpression(pDraw),
         stake: stakeDraw.toFixed(2),
-        return: (stakeDraw * (1/pDraw)).toFixed(2),
-        profit: ((stakeDraw * (1/pDraw)) - totalAmount).toFixed(2)
+        return: (stakeDraw * easeExpression(pDraw)).toFixed(2),
+        profit: ((stakeDraw * easeExpression(pDraw)) - totalAmount).toFixed(2)
     }
   ]
   let html_a = `
@@ -155,18 +182,18 @@ function calculateEqualProfit(totalAmount , pHome , pDraw , pAway , sum){
     <th>Total Return</th>
     <th>Actual Profit(R)</th>
   </tr>
-  ${iterateOver(arrObj)}
+  ${iterateOver(arrObj , target)}
   </table>
-  `
-  console.log(html_a); 
+  `; 
+
   document.querySelector("#result").innerHTML = html_a; 
 }
 
 
-function iterateOver(arrObj){
+function iterateOver(arrObj , target){
     let combinedHtml = `
     <div class="heading-display">
-      <h3>Equal Profit</h3>
+      <h3 style="text-transform:Uppercase;">${target} Profit</h3>
     </div>
     `; 
     arrObj.forEach( (obj) => {
