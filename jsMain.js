@@ -54,8 +54,8 @@ function displayInputAmounts(perc){
     <div class="radio-div">
         <label><input type="radio" name="strategy" value="equal" checked> Equal profit</label>
         <label><input type="radio"  name="strategy" value="home"> Home profit</label>
-        <label><input type="radio"  name="strategy" value="away"> Away profit</label>
-        <label><input type="radio"  name="strategy" value="draw"> Draw profit</label>  
+        <label><input type="radio"  name="strategy" value="draw"> Draw profit</label>
+        <label><input type="radio"  name="strategy" value="away"> Away profit</label>  
     </div>
 
     <button id="calculateBtn" class="calculateBtn">Calculate Bets</button>
