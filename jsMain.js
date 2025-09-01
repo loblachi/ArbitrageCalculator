@@ -160,19 +160,19 @@ else if (target === "home") {
         profit: ((stakeHome * easeExpression(pHome)) - totalAmount).toFixed(2)
     },
     {
+        name: "Draw",
+        odds: easeExpression(pDraw),
+        stake: stakeDraw.toFixed(2),
+        return: (stakeDraw * easeExpression(pDraw)).toFixed(2),
+        profit: ((stakeDraw * easeExpression(pDraw)) - totalAmount).toFixed(2)
+    },
+    {
         name: "Away",
         odds: easeExpression(pAway),
         stake: stakeAway.toFixed(2),
         return: (stakeAway * easeExpression(pAway)).toFixed(2),
         profit: ((stakeAway * easeExpression(pAway)) - totalAmount).toFixed(2)
     },
-    {
-        name: "Draw",
-        odds: easeExpression(pDraw),
-        stake: stakeDraw.toFixed(2),
-        return: (stakeDraw * easeExpression(pDraw)).toFixed(2),
-        profit: ((stakeDraw * easeExpression(pDraw)) - totalAmount).toFixed(2)
-    }
   ]
   let html_a = `
   <table class="table-info">
