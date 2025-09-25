@@ -189,7 +189,6 @@ else if (target === "home") {
   document.querySelector("#result").innerHTML = html_a; 
 }
 
-
 function iterateOver(arrObj , target){
     let combinedHtml = `
     <div class="heading-display">
