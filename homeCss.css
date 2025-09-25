@@ -176,8 +176,14 @@ body{
     color: white;
     display: flex;
     flex-direction: row;
-    gap: 2rem;
+    gap: 1rem;
     padding: 1rem 0rem;
+}
+.radio-div-plus{
+    border: 1px solid white;
+    padding: 0rem 1rem;
+    border-radius: .4rem;
+    margin-bottom: 2rem;
 }
 .radio-div label{
     display: block;

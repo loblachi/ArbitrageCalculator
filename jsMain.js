@@ -55,7 +55,12 @@ function displayInputAmounts(perc){
         <label><input type="radio" name="strategy" value="equal" checked> Equal profit</label>
         <label><input type="radio"  name="strategy" value="home"> Home profit</label>
         <label><input type="radio"  name="strategy" value="draw"> Draw profit</label>
-        <label><input type="radio"  name="strategy" value="away"> Away profit</label>  
+        <label><input type="radio"  name="strategy" value="away"> Away profit</label> 
+    </div>
+    <div class="radio-div radio-div-plus">
+         <label><input type="radio"  name="strategy" value="HomeDraw"> Home & Draw profit</label> 
+        <label><input type="radio"  name="strategy" value="HomeAway"> Home & Away profit</label> 
+        <label><input type="radio"  name="strategy" value="AwayDraw"> Away & Draw profit</label> 
     </div>
 
     <button id="calculateBtn" class="calculateBtn">Calculate Bets</button>
@@ -109,6 +114,19 @@ function calculateProfit(amt , radioSelected){
         case "draw" :
             CalculateTargetProfit(amt , pHome , pDraw , pAway, "draw");
         break; 
+  // next part of the thing LOLOLOL , more options to choose from , version 3
+        case "HomeDraw" :
+            CalculateTargetProfit(amt , pHome , pDraw , pAway, "HomeDraw");
+        break; 
+
+        case "HomeAway" :
+            CalculateTargetProfit(amt , pHome , pDraw , pAway, "HomeAway");
+        break; 
+
+        case "AwayDraw" :
+            CalculateTargetProfit(amt , pHome , pDraw , pAway, "AwayDraw");
+        break; 
+
 
         default:
             console.log("Unknown Strategy");
@@ -146,7 +164,38 @@ else if (target === "home") {
         stakeDraw = totalAmount / pDraw;
         stakeAway = totalAmount - (stakeHome + stakeDraw);
         profit = stakeAway * pAway - totalAmount;
-    }
+    } else if (target === "HomeAway") {
+        // Cover Draw, split remainder between Home & Away
+        stakeDraw = totalAmount / pDraw;
+        let remaining = totalAmount - stakeDraw;
+        stakeHome = remaining * ((1/pHome) / ((1/pHome) + (1/pAway)));
+        stakeAway = remaining * ((1/pAway) / ((1/pHome) + (1/pAway)));
+        // Profit if Home or Away wins
+        profit = (stakeHome * pHome - totalAmount);
+
+    } else if (target === "HomeDraw") {
+        // Cover Away, split remainder between Home & Draw
+        stakeAway = totalAmount / pAway;
+        let remaining = totalAmount - stakeAway;
+        stakeHome = remaining * ((1/pHome) / ((1/pHome) + (1/pDraw)));
+        stakeDraw = remaining * ((1/pDraw) / ((1/pHome) + (1/pDraw)));
+        // Profit if Home or Draw wins
+        profit = (stakeHome * pHome - totalAmount);
+
+    } else if (target === "AwayDraw") {
+        // Cover Home, split remainder between Away & Draw
+        stakeHome = totalAmount / pHome;
+        let remaining = totalAmount - stakeHome;
+        stakeAway = remaining * ((1/pAway) / ((1/pAway) + (1/pDraw)));
+        stakeDraw = remaining * ((1/pDraw) / ((1/pAway) + (1/pDraw)));
+        // Profit if Away or Draw wins
+        profit = (stakeAway * pAway - totalAmount);
+    } else {
+    console.error("Invalid target selected:", target);
+    document.querySelector("#result").innerHTML = "<p style='color:red'>Invalid strategy selected. Please try again.</p>";
+    return; 
+}
+
  // yooooo testing this above
      function easeExpression(oddExpression){
        return target === "equal" ? 1/oddExpression : oddExpression ; 
