@@ -194,7 +194,7 @@ else if (target === "home") {
     console.error("Invalid target selected:", target);
     document.querySelector("#result").innerHTML = "<p style='color:red'>Invalid strategy selected. Please try again.</p>";
     return; 
-}
+   }
 
  // yooooo testing this above
      function easeExpression(oddExpression){

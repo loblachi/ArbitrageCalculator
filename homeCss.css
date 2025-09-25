@@ -64,7 +64,7 @@ body{
 .spacer-div{
     height: 7rem;
     width: 100%;
-    background-color: silver;
+    background-color: black;
 
 }
 /*************** Section one  starts **********/
@@ -246,6 +246,6 @@ body{
     padding: 0rem 1rem 0rem 0rem;
 }
 .logo-div img{
-    width: 5rem;
+    width: 4.5rem;
 }
 }
