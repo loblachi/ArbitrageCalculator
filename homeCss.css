@@ -11,7 +11,7 @@ body{
 }
 .heading-bg{
 
-    background-color: black ;
+    background: linear-gradient(to right, rgb(0, 0, 0) , blue) ;
     position: fixed;
     width: 100%;
     z-index: 10;
@@ -52,14 +52,15 @@ body{
     letter-spacing: .1rem;
     word-spacing: .4rem;
     padding: .75rem 1.75rem;
-    border-bottom: 1px solid black;
-    color: rgb(129, 129, 129);
+    border-bottom: 1px solid white;
+    color: white;
+    
     transition: .3s all;
 }
 .links-li a:hover{
+    box-shadow: rgb(71, 71, 71) 0px -50px 36px -28px inset;
     border-bottom: 1px solid white;
     color: white;
-    box-shadow: rgba(255, 255, 255, 0.274) 0px -50px 36px -28px inset;
 }
 .spacer-div{
     height: 7rem;
