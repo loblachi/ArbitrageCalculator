@@ -226,10 +226,11 @@ else if (target === "home") {
   let html_a = `
   <table class="table-info">
   <tr>
+    <th class="site-th">Site</th>
     <th>Odds</th>
-    <th>Initial Stake</th>
+    <th style="background-color:purple;">Stake</th>
     <th>Total Return</th>
-    <th>Actual Profit(R)</th>
+    <th style="background-color:rgb(54, 166, 54);">Actual Profit</th>
   </tr>
   ${iterateOver(arrObj , target)}
   </table>
@@ -247,8 +248,9 @@ function iterateOver(arrObj , target){
     arrObj.forEach( (obj) => {
        let singleHtml = `
         <tr>
+            <td><input class="site-input" placeholder="-" type="text"></td>
             <td>${(obj.odds).toFixed(2)}</td>
-            <td>${obj.stake}</td>
+            <td class="stake-cl">${obj.stake}</td>
             <td>${obj.return}</td>
             <td class="profit-class">${obj.profit}</td>
         </tr>

@@ -120,7 +120,7 @@ body{
     margin-right: .5rem;
     border-radius: .25rem;
     border: none;
-    background-color: #29db58;
+    background-color: #44c0f1;
     box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
     transition: .35s all;
 }
@@ -137,7 +137,7 @@ body{
     width: 1.5rem;
 }
 .submit-button:hover{
-    background-color: #05830e;
+    background-color: #00065c;
     color: white;
 }
 .results-display{
@@ -205,11 +205,12 @@ body{
     min-width: 10rem;
     padding: .75rem 1.5rem;
     border-radius: .2rem;
-    background-color: rgb(111, 198, 227);
+    background-color: rgb(66, 186, 255);
     transition: .3s all;
+    border: none;
 }
 #calculateBtn:hover{
-    background-color: rgb(49, 110, 214);
+    background-color: rgb(2, 12, 102);
     color: white;
     cursor: pointer;
 }
@@ -218,17 +219,28 @@ body{
     width: 100%;
     color: white;
 }
+.site-input{
+    max-width: 2.25rem;
+    background-color: black;
+    border: none;
+    color: white;
+}
+
+.site-th{
+}
 .table-info tr th , .table-info tr td{
-    padding: .75rem 1rem;
+    padding: .75rem .35rem;
     border: 1px solid white;
 }
 .table-info tr th {
     background-color: rgb(94, 94, 94);
 }
 .profit-class{
-    background-color: rgb(54, 166, 54);
+    background-color: green;
 }
-
+.stake-cl{
+    background-color: rgb(49, 0, 65);
+}
 #result{
     max-width: 30rem;
     margin-top: 5rem;
@@ -241,7 +253,7 @@ body{
 
 @media (max-width: 600px){
 .section-one-container{
-    width: 96%;
+    width: 98.5%;
 }
 .logo-div{
     padding: 0rem 1rem 0rem 0rem;
